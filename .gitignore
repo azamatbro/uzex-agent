@@ -1,0 +1,9 @@
+.env
+node_modules/
+library/
+uzex_embeddings.cache.json
+dist/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+node_modules

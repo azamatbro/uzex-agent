@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UZEX Spot Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="history-panel" aria-label="Chat history">
+      <div class="history-header">
+        <div>
+          <span class="eyebrow">Workspace</span>
+          <h1>UZEX agent</h1>
+        </div>
+        <button type="button" id="new-chat-btn" class="icon-btn" aria-label="New chat" title="New chat">+</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </aside>
+    <aside class="library-panel" aria-label="Document library">
+      <div class="library-panel-heading">
+        <div>
+          <span class="eyebrow">Knowledge base</span>
+          <h2>Library</h2>
+        </div>
+        <label class="icon-btn upload-button" aria-label="Upload documents" title="Upload documents">+
+          <input id="library-upload" type="file" accept=".pdf,.docx,.csv,.xlsx,.xls" multiple hidden>
+        </label>
+      </div>
+      <p class="library-description">Documents here can be used to answer your questions.</p>
+      <div id="library-list" class="library-list"></div>
+    </aside>
+    <div class="shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button type="button" id="history-toggle" class="icon-btn mobile-only" aria-label="Open chat history">☰</button>
+        <span class="app-title">UZEX</span>
+        <span id="stats-summary" class="stats-meta">500,000 сделок · 6,616 контрактов · 2022–2026</span>
+      </div>
+      <div class="topbar-right">
+        <div class="seg-group" role="group" aria-label="Language">
+          <button type="button" class="seg-btn active" data-lang="ru">RU</button>
+          <button type="button" class="seg-btn" data-lang="uz">UZ</button>
+        </div>
+        <button type="button" id="clear-btn" class="text-btn">Сброс</button>
+        <button type="button" id="settings-btn" class="text-btn">Settings</button>
+      </div>
+    </header>
+
+    <main id="thread" class="thread" aria-live="polite"></main>
+
+    <footer class="composer-wrap">
+      <div id="presets-bar" class="presets-bar"></div>
+      <form id="ask-form" class="composer">
+        <textarea
+          id="chat-input"
+          type="text"
+          class="composer-input"
+          autocomplete="off"
+          placeholder="Спросите о сделках, товарах, брокерах или ценах..."
+          rows="1"
+        ></textarea>
+        <button type="submit" id="send-btn" class="send-btn">Отправить</button>
+      </form>
+    </footer>
+  </div>
+  <div id="settings-modal" class="modal-backdrop" hidden>
+    <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="modal-heading"><div><span class="eyebrow">Workspace</span><h2 id="settings-title">Settings</h2></div><button type="button" id="close-settings" class="icon-btn">×</button></div>
+      <label>Interface language<select id="ui-language"><option value="ru">Русский</option><option value="uz">O‘zbekcha</option></select></label>
+      <label>Theme<select id="theme-select"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label>AI provider<select id="provider-select"><option value="gemini">Gemini</option><option value="openai">OpenAI</option><option value="deepseek">DeepSeek</option></select></label>
+      <label>LLM_api_key<input id="api-key-input" type="password" autocomplete="off" placeholder="Stored only in this browser"></label>
+      <p class="settings-note">Keys stay in this browser and are sent only with your chat request.</p>
+      <button type="button" id="save-settings" class="send-btn settings-save">Save settings</button>
+    </section>
+  </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
